@@ -116,11 +116,7 @@ class ChatMemory(BaseMemory):
         return self.chat_memory.get_all()
 
     def put(self, message: ChatMessage) -> None:
-<<<<<<< HEAD
         """Put chat history. If the message is user or assistant message, create_message event will be emitted to Align AI.
-=======
-        """Put chat history. If the message is user or assistant message, create_message event will be emitted to align.ai.
->>>>>>> b3f55cc (Dynamic attributes for ChatMemoryBuffer)
 
         Args:
             message (ChatMessage): Chat message.
