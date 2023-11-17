@@ -56,7 +56,7 @@ class ChatMemory(BaseMemory):
 
         Args:
             chat_memory (BaseMemory): Chat memory from LlamaIndex. Reference: https://docs.llamaindex.ai/en/stable/api_reference/memory.html
-            align_client (AlignAI): alignai SDK client.
+            align_client (AlignAI): Align AI SDK client.
             session_id (str): Session ID.
             user_id (str): User Id.
             assistant_id (str, optional): Assistant ID. Defaults to "DEFAULT".
