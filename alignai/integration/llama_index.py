@@ -150,7 +150,7 @@ class ChatMemory(BaseMemory):
         create_time: datetime | None = None,
         display_name: str | None = None,
     ) -> None:
-        """Send identify_user event to align.ai. The user_id provided upon initialization will be used.
+        """Send identify_user event to Align AI. The user_id provided upon initialization will be used.
 
         Args:
             email (str | None, optional): User email address. Defaults to None.
