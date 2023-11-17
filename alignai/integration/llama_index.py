@@ -150,15 +150,7 @@ class ChatMemory(BaseMemory):
         create_time: datetime | None = None,
         display_name: str | None = None,
     ) -> None:
-<<<<<<< HEAD
-<<<<<<< HEAD
         """Send identify_user event to Align AI. The user_id provided upon initialization will be used.
-=======
-        """Send identify_user event to align.ai. The user_id provided upon initialization will be used.
->>>>>>> b3f55cc (Dynamic attributes for ChatMemoryBuffer)
-=======
-        """Send identify_user event to Align AI. The user_id provided upon initialization will be used.
->>>>>>> 80c90f8 (Update alignai/integration/llama_index.py)
 
         Args:
             email (str | None, optional): User email address. Defaults to None.
@@ -177,11 +169,7 @@ class ChatMemory(BaseMemory):
         )
 
     def close(self) -> None:
-<<<<<<< HEAD
         """Close the session. Do not send additional message after calling this method."""
-=======
-        """Close the AlignAI session. Do not send additional message after calling this method."""
->>>>>>> b3f55cc (Dynamic attributes for ChatMemoryBuffer)
         self.align_client.close_session(session_id=self.session_id)
 
     @property
