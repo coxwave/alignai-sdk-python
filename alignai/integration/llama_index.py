@@ -52,7 +52,7 @@ class ChatMemory(BaseMemory):
         assistant_id: str = DEFAULT_ASSISTANT_ID,
         user_info: UserInfo | None = None,
     ):
-        """Initialize ChatMemory. When initialized, open_session event is emitted to alignai. If user_info is provided, identify_user event is also emitted.
+        """Initialize ChatMemory. When initialized, open_session event is emitted. If user_info is provided, identify_user event is also emitted.
 
         Args:
             chat_memory (BaseMemory): Chat memory from LlamaIndex. Reference: https://docs.llamaindex.ai/en/stable/api_reference/memory.html
