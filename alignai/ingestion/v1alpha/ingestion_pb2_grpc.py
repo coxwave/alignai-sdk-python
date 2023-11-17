@@ -3,7 +3,7 @@
 import grpc
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
-from impaction_ai.ingestion.v1alpha import ingestion_pb2 as ingestion_dot_v1alpha_dot_ingestion__pb2
+from alignai.ingestion.v1alpha import ingestion_pb2 as ingestion_dot_v1alpha_dot_ingestion__pb2
 
 
 class IngestionServiceStub(object):

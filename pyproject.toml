@@ -6,6 +6,7 @@ authors = ["Coxwave <tech@coxwave.com>"]
 readme = "README.md"
 packages = [{include = "alignai"}]
 
+
 [tool.poetry.dependencies]
 python = ">=3.8.0,<4.0"
 requests = "^2.31.0"
