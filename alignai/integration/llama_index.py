@@ -116,7 +116,11 @@ class ChatMemory(BaseMemory):
         return self.chat_memory.get_all()
 
     def put(self, message: ChatMessage) -> None:
+<<<<<<< HEAD
         """Put chat history. If the message is user or assistant message, create_message event will be emitted to Align AI.
+=======
+        """Put chat history. If the message is user or assistant message, create_message event will be emitted to align.ai.
+>>>>>>> b3f55cc (Dynamic attributes for ChatMemoryBuffer)
 
         Args:
             message (ChatMessage): Chat message.
@@ -150,7 +154,11 @@ class ChatMemory(BaseMemory):
         create_time: datetime | None = None,
         display_name: str | None = None,
     ) -> None:
+<<<<<<< HEAD
         """Send identify_user event to Align AI. The user_id provided upon initialization will be used.
+=======
+        """Send identify_user event to align.ai. The user_id provided upon initialization will be used.
+>>>>>>> b3f55cc (Dynamic attributes for ChatMemoryBuffer)
 
         Args:
             email (str | None, optional): User email address. Defaults to None.
@@ -169,7 +177,11 @@ class ChatMemory(BaseMemory):
         )
 
     def close(self) -> None:
+<<<<<<< HEAD
         """Close the session. Do not send additional message after calling this method."""
+=======
+        """Close the AlignAI session. Do not send additional message after calling this method."""
+>>>>>>> b3f55cc (Dynamic attributes for ChatMemoryBuffer)
         self.align_client.close_session(session_id=self.session_id)
 
     @property
