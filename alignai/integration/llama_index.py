@@ -169,7 +169,7 @@ class ChatMemory(BaseMemory):
         )
 
     def close(self) -> None:
-        """Close the AlignAI session. Do not send additional message after calling this method."""
+        """Close the session. Do not send additional message after calling this method."""
         self.align_client.close_session(session_id=self.session_id)
 
     @property
