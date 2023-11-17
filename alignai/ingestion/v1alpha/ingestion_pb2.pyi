@@ -1,6 +1,6 @@
 from google.api import field_behavior_pb2 as _field_behavior_pb2
 from google.protobuf import empty_pb2 as _empty_pb2
-from impaction_ai.ingestion.v1alpha import event_pb2 as _event_pb2
+from alignai.ingestion.v1alpha import event_pb2 as _event_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message

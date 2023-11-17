@@ -16,7 +16,7 @@ class Config:
         max_buffer_size: int = MAX_BUFFER_SIZE,
         api_max_retries: int = API_MAX_RETIRES,
     ):
-        """impaction.ai client configuration to adjust the behavior of the SDK.
+        """alingai client configuration to adjust the behavior of the SDK.
 
         Args:
             flush_interval_ms (int, optional): Interval for consuming the buffer. Defaults to 3000.
