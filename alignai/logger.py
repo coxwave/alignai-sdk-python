@@ -1,7 +1,5 @@
 import logging
 import traceback
-import types
-from typing import Type
 
 
 class LimitedTracebackFormatter(logging.Formatter):
@@ -9,9 +7,7 @@ class LimitedTracebackFormatter(logging.Formatter):
         super().__init__(*args, **kwargs)
         self._stack_trace_limit = stack_trace_limit
 
-    def formatException(
-        self, exc_info: tuple[Type[BaseException], BaseException, types.TracebackType] | tuple[None, None, None]
-    ) -> str:
+    def formatException(self, exc_info) -> str:
         _, _, tb = exc_info
         return "".join(traceback.format_tb(tb)[-self._stack_trace_limit :])
 

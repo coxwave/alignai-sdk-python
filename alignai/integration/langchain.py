@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import importlib
 from datetime import datetime
 from importlib import metadata as importlib_metadata
