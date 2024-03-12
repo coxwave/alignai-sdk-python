@@ -18,7 +18,7 @@ from alignai.constants import (
 )
 from alignai.ingestion.v1alpha.event_pb2 import Event, EventProperties
 from alignai.logger import get_logger
-from alignai.utils import datetime_to_timestamp
+from alignai.utils import CustomProperties, datetime_to_timestamp, serialize_custom_properties
 from alignai.worker import Worker
 
 
@@ -61,7 +61,13 @@ class AlignAI:
         self.worker.setup(self.buffer_storage)
         self.worker.start()
 
-    def open_session(self, session_id: str, user_id: str, assistant_id: str = DEFAULT_ASSISTANT_ID) -> None:
+    def open_session(
+        self,
+        session_id: str,
+        user_id: str,
+        assistant_id: str = DEFAULT_ASSISTANT_ID,
+        custom_properties: CustomProperties | None = None,
+    ) -> None:
         """Record the initiation of a session.
 
         Args:
@@ -74,7 +80,10 @@ class AlignAI:
             id=uuid.uuid4().hex,
             type=EventTypes.SESSION_OPEN,
             create_time=datetime_to_timestamp(pendulum.now()),
-            properties=EventProperties(session_properties=EventProperties.SessionProperties(**session_properties_args)),
+            properties=EventProperties(
+                session_properties=EventProperties.SessionProperties(**session_properties_args),
+                custom_properties=serialize_custom_properties(custom_properties) if custom_properties else None,
+            ),
             project_id=self.project_id,
         )
         self._collect(open_session_event)
@@ -134,7 +143,14 @@ class AlignAI:
         )
         self._collect(identify_user_event)
 
-    def create_message(self, session_id: str, message_index: int, role: str, content: str) -> None:
+    def create_message(
+        self,
+        session_id: str,
+        message_index: int,
+        role: str,
+        content: str,
+        custom_properties: CustomProperties | None = None,
+    ) -> None:
         """Record an individual message within a session.
 
         Args:
@@ -158,11 +174,14 @@ class AlignAI:
                 message_properties=EventProperties.MessageProperties(
                     session_id=session_id,
                     message_index_hint=message_index,
-                    message_role=EventProperties.MessageProperties.Role.ROLE_ASSISTANT
-                    if role == ROLE_ASSISTANT
-                    else EventProperties.MessageProperties.Role.ROLE_USER,
+                    message_role=(
+                        EventProperties.MessageProperties.Role.ROLE_ASSISTANT
+                        if role == ROLE_ASSISTANT
+                        else EventProperties.MessageProperties.Role.ROLE_USER
+                    ),
                     message_content=content,
-                )
+                ),
+                custom_properties=serialize_custom_properties(custom_properties) if custom_properties else None,
             ),
             project_id=self.project_id,
         )
