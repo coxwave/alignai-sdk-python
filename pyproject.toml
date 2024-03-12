@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "alignai"
-version = "0.1.2"
+version = "0.2.0"
 description = "Python SDK for Align AI"
 authors = ["Coxwave <tech@coxwave.com>"]
 readme = "README.md"
