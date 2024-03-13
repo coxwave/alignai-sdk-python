@@ -74,6 +74,7 @@ class AlignAI:
             session_id (str): Session ID.
             user_id (str): User ID associated with the session.
             assistant_id (str, optional): Assistant ID. Defaults to "DEFAULT".
+            custom_properties (dict[str, str] | None, optional): Custom properties associated with the session. Defaults to None.
         """
         session_properties_args = {"session_id": session_id, "user_id": user_id, "assistant_id": assistant_id}
         open_session_event = Event(
@@ -111,6 +112,7 @@ class AlignAI:
         ip: str | None = None,
         country_code: str | None = None,
         create_time: datetime | None = None,
+        custom_properties: CustomProperties | None = None,
     ) -> None:
         """Record a user.
 
@@ -121,6 +123,7 @@ class AlignAI:
             ip (str | None, optional): User IPv4 address. Provide either ip or country code for user location. If both are given, country code overrides ip. Defaults to None.
             country_code (str | None, optional): User country code in ISO Alpha-2. Provide either ip or country code for user location. If both are given, country code overrides ip. Defaults to None.
             create_time (datetime | None, optional): User creation time. Defaults to None.
+            custom_properties (dict[str, str] | None, optional): Custom properties associated with the user. Defaults to None.
         """  # noqa: E501
         user_properties_args = {"user_id": user_id}
         if display_name is not None:
@@ -138,7 +141,10 @@ class AlignAI:
             id=uuid.uuid4().hex,
             type=EventTypes.USER_RECOGNIZE,
             create_time=datetime_to_timestamp(pendulum.now()),
-            properties=EventProperties(user_properties=EventProperties.UserProperties(**user_properties_args)),
+            properties=EventProperties(
+                user_properties=EventProperties.UserProperties(**user_properties_args),
+                custom_properties=serialize_custom_properties(custom_properties) if custom_properties else None,
+            ),
             project_id=self.project_id,
         )
         self._collect(identify_user_event)
@@ -158,6 +164,7 @@ class AlignAI:
             message_index (int): Message index used to sort messages in a chronological order within a session. Must be a positive integer.
             role (str): alignai.constants.ROLE_USER or alignai.constants.ROLE_ASSISTANT.
             content (str): Content of the message.
+            custom_properties (dict[str, str] | None, optional): Custom properties associated with the message. Defaults to None.
         """  # noqa: E501
         if message_index <= 0:
             self.logger.error(f"Invalid message index '{message_index}': Message index must be a positive integer")
