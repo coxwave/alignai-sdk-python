@@ -9,6 +9,7 @@ from packaging import version
 
 from alignai import AlignAI
 from alignai.constants import DEFAULT_ASSISTANT_ID, ROLE_ASSISTANT, ROLE_USER
+from alignai.utils import CustomProperties
 
 try:
     llama_index = importlib.import_module("llama_index")
@@ -31,6 +32,7 @@ class UserInfo(TypedDict, total=False):
     country_code: str | None
     create_time: datetime | None
     display_name: str | None
+    custom_properties: CustomProperties | None
 
 
 class ChatMemory(BaseMemory):
@@ -87,6 +89,7 @@ class ChatMemory(BaseMemory):
                 country_code=self.user_info.get("country_code", None),
                 create_time=self.user_info.get("create_time", None),
                 display_name=self.user_info.get("display_name", None),
+                custom_properties=self.user_info.get("custom_properties", None),
             )
 
     def __getattr__(self, name):
@@ -151,6 +154,7 @@ class ChatMemory(BaseMemory):
         country_code: str | None = None,
         create_time: datetime | None = None,
         display_name: str | None = None,
+        custom_properties: CustomProperties | None = None,
     ) -> None:
         """Send identify_user event to Align AI. The user_id provided upon initialization will be used.
 
@@ -160,6 +164,7 @@ class ChatMemory(BaseMemory):
             country_code (str | None, optional): User country code in ISO Alpha-2. Provide either ip or country code for user location. If both are given, country code overrides ip. Defaults to None.
             create_time (datetime | None, optional): User creation time. Defaults to None.
             display_name (str | None, optional): User display name. Defaults to None.
+            custom_properties (dict[str, str] | None, optional): Custom properties associated with the user. Defaults to None.
         """  # noqa: E501
         self.align_client.identify_user(
             user_id=self.user_id,
@@ -168,6 +173,7 @@ class ChatMemory(BaseMemory):
             country_code=country_code,
             create_time=create_time,
             display_name=display_name,
+            custom_properties=custom_properties,
         )
 
     def close(self) -> None:
