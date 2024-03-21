@@ -6,21 +6,21 @@ class ValidationError(Exception):
         return f"ValidationError: {self.message}"
 
 
-def validate_session_id_or_throw(session_id: str):
+def validate_session_id_or_raise(session_id: str):
     if not session_id:
         raise ValidationError("session_id is required")
     if len(session_id) > 64:
         raise ValidationError("session_id must be at most 64 characters")
 
 
-def validate_user_id_or_throw(user_id: str):
+def validate_user_id_or_raise(user_id: str):
     if not user_id:
         raise ValidationError("user_id is required")
     if len(user_id) > 64:
         raise ValidationError("user_id must be at most 64 characters")
 
 
-def validate_custom_properties_or_throw(custom_properties: dict[str, str]):
+def validate_custom_properties_or_raise(custom_properties: dict[str, str]):
     if len(custom_properties) > 10:
         raise ValidationError("custom_properties must have at most 10 keys")
     for key, value in custom_properties.items():

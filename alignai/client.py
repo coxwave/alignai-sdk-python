@@ -21,9 +21,9 @@ from alignai.logger import get_logger
 from alignai.utils import CustomProperties, datetime_to_timestamp, serialize_custom_properties
 from alignai.validate import (
     ValidationError,
-    validate_custom_properties_or_throw,
-    validate_session_id_or_throw,
-    validate_user_id_or_throw,
+    validate_custom_properties_or_raise,
+    validate_session_id_or_raise,
+    validate_user_id_or_raise,
 )
 from alignai.worker import Worker
 
@@ -82,12 +82,12 @@ class AlignAI:
             assistant_id (str, optional): Assistant ID. Defaults to "DEFAULT".
             custom_properties (dict[str, str] | None, optional): Custom properties associated with the session. Defaults to None.
         """
-        validate_session_id_or_throw(session_id)
-        validate_user_id_or_throw(user_id)
+        validate_session_id_or_raise(session_id)
+        validate_user_id_or_raise(user_id)
         if len(assistant_id) > 64:
             raise ValidationError("assistant_id must be at most 64 characters")
         if custom_properties:
-            validate_custom_properties_or_throw(custom_properties)
+            validate_custom_properties_or_raise(custom_properties)
 
         session_properties_args = {"session_id": session_id, "user_id": user_id, "assistant_id": assistant_id}
         open_session_event = Event(
@@ -108,7 +108,7 @@ class AlignAI:
         Args:
             session_id (str): Session ID.
         """
-        validate_session_id_or_throw(session_id)
+        validate_session_id_or_raise(session_id)
 
         close_session_event = Event(
             id=uuid.uuid4().hex,
@@ -140,7 +140,7 @@ class AlignAI:
             create_time (datetime | None, optional): User creation time. Defaults to None.
             custom_properties (dict[str, str] | None, optional): Custom properties associated with the user. Defaults to None.
         """  # noqa: E501
-        validate_user_id_or_throw(user_id)
+        validate_user_id_or_raise(user_id)
         if display_name and len(display_name) > 64:
             raise ValidationError("display_name must be at most 64 characters")
         if email and len(email) > 256:
@@ -148,7 +148,7 @@ class AlignAI:
         if country_code and len(country_code) != 2:
             raise ValidationError("country_code must be ISO Alpha-2 code")
         if custom_properties:
-            validate_custom_properties_or_throw(custom_properties)
+            validate_custom_properties_or_raise(custom_properties)
 
         user_properties_args = {"user_id": user_id}
         if display_name is not None:
@@ -191,13 +191,13 @@ class AlignAI:
             content (str): Content of the message.
             custom_properties (dict[str, str] | None, optional): Custom properties associated with the message. Defaults to None.
         """  # noqa: E501
-        validate_session_id_or_throw(session_id)
+        validate_session_id_or_raise(session_id)
         if message_index <= 0:
             raise ValidationError("message_index must be greater than 0")
         if not content:
             raise ValidationError("content is required")
         if custom_properties:
-            validate_custom_properties_or_throw(custom_properties)
+            validate_custom_properties_or_raise(custom_properties)
 
         if message_index <= 0:
             self.logger.error(f"Invalid message index '{message_index}': Message index must be a positive integer")
