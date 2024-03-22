@@ -18,7 +18,11 @@ from alignai.constants import (
 )
 from alignai.ingestion.v1alpha.event_pb2 import Event, EventProperties
 from alignai.logger import get_logger
-from alignai.utils import CustomProperties, datetime_to_timestamp, serialize_custom_properties
+from alignai.utils import (
+    CustomProperties,
+    datetime_to_timestamp,
+    serialize_custom_properties,
+)
 from alignai.validate import (
     ValidationError,
     validate_custom_properties_or_raise,
@@ -80,7 +84,8 @@ class AlignAI:
             session_id (str): Session ID.
             user_id (str): User ID associated with the session.
             assistant_id (str, optional): Assistant ID. Defaults to "DEFAULT".
-            custom_properties (dict[str, str] | None, optional): Custom properties associated with the session. Defaults to None.
+            custom_properties (dict[str, str] | None, optional): Custom properties associated with the session.
+                Defaults to None.
         """
         validate_session_id_or_raise(session_id)
         validate_user_id_or_raise(user_id)
