@@ -2,6 +2,7 @@ from datetime import datetime
 from typing import Mapping
 
 from google.protobuf.timestamp_pb2 import Timestamp
+
 from alignai.ingestion.v1alpha.event_pb2 import EventProperties
 
 

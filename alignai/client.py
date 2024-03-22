@@ -18,7 +18,11 @@ from alignai.constants import (
 )
 from alignai.ingestion.v1alpha.event_pb2 import Event, EventProperties
 from alignai.logger import get_logger
-from alignai.utils import CustomProperties, datetime_to_timestamp, serialize_custom_properties
+from alignai.utils import (
+    CustomProperties,
+    datetime_to_timestamp,
+    serialize_custom_properties,
+)
 from alignai.validate import (
     ValidationError,
     validate_custom_properties_or_raise,
