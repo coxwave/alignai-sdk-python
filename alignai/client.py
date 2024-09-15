@@ -11,12 +11,12 @@ from alignai.buffer_storage import BufferStorage
 from alignai.config import Config
 from alignai.constants import (
     DEFAULT_ASSISTANT_ID,
+    FEEDBACK_THUMBS_DOWN,
+    FEEDBACK_THUMBS_UP,
     ROLE_ASSISTANT,
     ROLE_USER,
     SERVER_BASE_URL,
     EventTypes,
-    FEEDBACK_THUMBS_UP,
-    FEEDBACK_THUMBS_DOWN,
 )
 from alignai.ingestion.v1alpha.event_pb2 import Event, EventProperties
 from alignai.logger import get_logger
