@@ -16,9 +16,9 @@ googleapis-googleapis-protocolbuffers-python = "^28.1.0.1.20240827201746+e7f8d36
 googleapis-googleapis-protocolbuffers-pyi = "^28.1.0.1.20240827201746+e7f8d366f526"
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.3.4"
-black = "^24.3.0"
-mypy = "^1.9.0"
+ruff = "^0.3.7"
+black = "^24.8.0"
+mypy = "^1.11.2"
 isort = "^5.13.2"
 pre-commit = "^3.5.0"
 packaging = "^23.2"
@@ -35,13 +35,12 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
 line-length = 120
-select = [
+lint.select = [
   "E",   # pycodestyle
   "F",   # pyflakes
   "UP",  # pyupgrade
 ]
 exclude = ["alignai/ingestion"]
-
 target-version = "py38"
 
 [tool.black]
