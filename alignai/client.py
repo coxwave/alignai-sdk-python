@@ -14,7 +14,9 @@ from alignai.constants import (
     ROLE_ASSISTANT,
     ROLE_USER,
     SERVER_BASE_URL,
-    EventTypes, FEEDBACK_THUMBS_UP, FEEDBACK_THUMBS_DOWN,
+    EventTypes,
+    FEEDBACK_THUMBS_UP,
+    FEEDBACK_THUMBS_DOWN,
 )
 from alignai.ingestion.v1alpha.event_pb2 import Event, EventProperties
 from alignai.logger import get_logger
@@ -228,9 +230,9 @@ class AlignAI:
         self._collect(create_message_event)
 
     def create_session_feedback(
-            self,
-            session_id: str,
-            feedback_type: str,
+        self,
+        session_id: str,
+        feedback_type: str,
     ):
         """Record an feedback targeting a specific session.
 
@@ -240,7 +242,9 @@ class AlignAI:
         """  # noqa: E501
         validate_session_id_or_raise(session_id)
         if feedback_type != FEEDBACK_THUMBS_UP and feedback_type != FEEDBACK_THUMBS_DOWN:
-            raise ValidationError(f"Invalid feedback type '{feedback_type}': Feedback type must be either 'thumbs_up' or 'thumbs_down'")
+            raise ValidationError(
+                f"Invalid feedback type '{feedback_type}': Feedback type must be either 'thumbs_up' or 'thumbs_down'"
+            )
 
         create_feedback_event = Event(
             id=uuid.uuid4().hex,
@@ -258,10 +262,10 @@ class AlignAI:
         self._collect(create_feedback_event)
 
     def create_message_feedback(
-            self,
-            session_id: str,
-            message_index: int,
-            feedback_type: str,
+        self,
+        session_id: str,
+        message_index: int,
+        feedback_type: str,
     ):
         """Record an feedback targeting a specific message.
 
@@ -274,7 +278,9 @@ class AlignAI:
         if message_index <= 0:
             raise ValidationError("message_index must be greater than 0")
         if feedback_type != FEEDBACK_THUMBS_UP and feedback_type != FEEDBACK_THUMBS_DOWN:
-            raise ValidationError(f"Invalid feedback type '{feedback_type}': Feedback type must be either 'thumbs_up' or 'thumbs_down'")
+            raise ValidationError(
+                f"Invalid feedback type '{feedback_type}': Feedback type must be either 'thumbs_up' or 'thumbs_down'"
+            )
 
         create_feedback_event = Event(
             id=uuid.uuid4().hex,
