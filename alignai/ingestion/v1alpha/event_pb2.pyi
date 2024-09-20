@@ -85,7 +85,7 @@ class EventProperties(_message.Message):
         user_display_name: str
         def __init__(self, user_id: _Optional[str] = ..., user_email: _Optional[str] = ..., user_ip: _Optional[str] = ..., user_location: _Optional[_Union[EventProperties.UserProperties.Location, _Mapping]] = ..., user_create_time: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., user_display_name: _Optional[str] = ...) -> None: ...
     class FeedbackProperties(_message.Message):
-        __slots__ = ("session_id", "feedback_target", "feedback_score", "message_id_hint", "message_index_hint")
+        __slots__ = ("session_id", "message_index_hint", "feedback_target", "type")
         class Target(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
             __slots__ = ()
             TARGET_UNSPECIFIED: _ClassVar[EventProperties.FeedbackProperties.Target]
@@ -95,16 +95,14 @@ class EventProperties(_message.Message):
         TARGET_SESSION: EventProperties.FeedbackProperties.Target
         TARGET_MESSAGE: EventProperties.FeedbackProperties.Target
         SESSION_ID_FIELD_NUMBER: _ClassVar[int]
-        FEEDBACK_TARGET_FIELD_NUMBER: _ClassVar[int]
-        FEEDBACK_SCORE_FIELD_NUMBER: _ClassVar[int]
-        MESSAGE_ID_HINT_FIELD_NUMBER: _ClassVar[int]
         MESSAGE_INDEX_HINT_FIELD_NUMBER: _ClassVar[int]
+        FEEDBACK_TARGET_FIELD_NUMBER: _ClassVar[int]
+        TYPE_FIELD_NUMBER: _ClassVar[int]
         session_id: str
-        feedback_target: EventProperties.FeedbackProperties.Target
-        feedback_score: int
-        message_id_hint: str
         message_index_hint: int
-        def __init__(self, session_id: _Optional[str] = ..., feedback_target: _Optional[_Union[EventProperties.FeedbackProperties.Target, str]] = ..., feedback_score: _Optional[int] = ..., message_id_hint: _Optional[str] = ..., message_index_hint: _Optional[int] = ...) -> None: ...
+        feedback_target: EventProperties.FeedbackProperties.Target
+        type: str
+        def __init__(self, session_id: _Optional[str] = ..., message_index_hint: _Optional[int] = ..., feedback_target: _Optional[_Union[EventProperties.FeedbackProperties.Target, str]] = ..., type: _Optional[str] = ...) -> None: ...
     class CustomPropertyValue(_message.Message):
         __slots__ = ("string_value",)
         STRING_VALUE_FIELD_NUMBER: _ClassVar[int]

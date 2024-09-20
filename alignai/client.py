@@ -11,6 +11,8 @@ from alignai.buffer_storage import BufferStorage
 from alignai.config import Config
 from alignai.constants import (
     DEFAULT_ASSISTANT_ID,
+    FEEDBACK_THUMBS_DOWN,
+    FEEDBACK_THUMBS_UP,
     ROLE_ASSISTANT,
     ROLE_USER,
     SERVER_BASE_URL,
@@ -203,13 +205,8 @@ class AlignAI:
             raise ValidationError("content is required")
         if custom_properties:
             validate_custom_properties_or_raise(custom_properties)
-
-        if message_index <= 0:
-            self.logger.error(f"Invalid message index '{message_index}': Message index must be a positive integer")
-            return
-        if role not in [ROLE_USER, ROLE_ASSISTANT]:
-            self.logger.error(f"Invalid message role '{role}': Message role must be either 'user' or 'assistant'")
-            return
+        if role not in {ROLE_USER, ROLE_ASSISTANT}:
+            raise ValidationError(f"Invalid message role '{role}': Message role must be either 'user' or 'assistant'")
 
         create_message_event = Event(
             id=uuid.uuid4().hex,
@@ -231,6 +228,75 @@ class AlignAI:
             project_id=self.project_id,
         )
         self._collect(create_message_event)
+
+    def create_session_feedback(
+        self,
+        session_id: str,
+        feedback_type: str,
+    ):
+        """Record an feedback targeting a specific session.
+
+        Args:
+            session_id (str): Session ID associated with the message.
+            feedback_type (str): alignai.constants.FEEDBACK_THUMBS_UP or alignai.constants.FEEDBACK_THUMBS_DOWN.
+        """  # noqa: E501
+        validate_session_id_or_raise(session_id)
+        if feedback_type != FEEDBACK_THUMBS_UP and feedback_type != FEEDBACK_THUMBS_DOWN:
+            raise ValidationError(
+                f"Invalid feedback type '{feedback_type}': Feedback type must be either 'thumbs_up' or 'thumbs_down'"
+            )
+
+        create_feedback_event = Event(
+            id=uuid.uuid4().hex,
+            type=EventTypes.MESSAGE_CREATE,
+            create_time=datetime_to_timestamp(pendulum.now()),
+            properties=EventProperties(
+                feedback_properties=EventProperties.FeedbackProperties(
+                    session_id=session_id,
+                    feedback_target=EventProperties.FeedbackProperties.TARGET_SESSION,
+                    type=feedback_type,
+                ),
+            ),
+            project_id=self.project_id,
+        )
+        self._collect(create_feedback_event)
+
+    def create_message_feedback(
+        self,
+        session_id: str,
+        message_index: int,
+        feedback_type: str,
+    ):
+        """Record an feedback targeting a specific message.
+
+        Args:
+            session_id (str): Session ID associated with the message.
+            message_index (int): Message index used to sort messages in a chronological order within a session. Must be a positive integer.
+            feedback_type (str): alignai.constants.FEEDBACK_THUMBS_UP or alignai.constants.FEEDBACK_THUMBS_DOWN.
+        """  # noqa: E501
+        validate_session_id_or_raise(session_id)
+        if message_index <= 0:
+            raise ValidationError("message_index must be greater than 0")
+        if feedback_type != FEEDBACK_THUMBS_UP and feedback_type != FEEDBACK_THUMBS_DOWN:
+            raise ValidationError(
+                f"Invalid feedback type '{feedback_type}': Feedback type must be either 'thumbs_up' or 'thumbs_down'"
+            )
+
+        create_feedback_event = Event(
+            id=uuid.uuid4().hex,
+            type=EventTypes.MESSAGE_CREATE,
+            create_time=datetime_to_timestamp(pendulum.now()),
+            properties=EventProperties(
+                feedback_properties=EventProperties.FeedbackProperties(
+                    session_id=session_id,
+                    message_index_hint=message_index,
+                    feedback_target=EventProperties.FeedbackProperties.TARGET_MESSAGE,
+                    type=feedback_type,
+                ),
+            ),
+            project_id=self.project_id,
+        )
+        self._collect(create_feedback_event)
 
     def flush(self, timeout_seconds: int | None = None) -> None:
         """Dispatch all events from the buffer to Align AI.
