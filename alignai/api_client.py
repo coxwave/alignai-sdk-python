@@ -5,11 +5,11 @@ import uuid
 from urllib.parse import urljoin
 
 import requests
+from ingestion.v1alpha.event_pb2 import Event
+from ingestion.v1alpha.ingestion_pb2 import CollectEventsRequest
 from requests.exceptions import RequestException
 
 from alignai.exception import APIError
-from alignai.ingestion.v1alpha.event_pb2 import Event
-from alignai.ingestion.v1alpha.ingestion_pb2 import CollectEventsRequest
 
 
 class APIClient:

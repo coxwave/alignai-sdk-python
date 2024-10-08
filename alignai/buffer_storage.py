@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from threading import Condition, Lock
 
-from alignai.ingestion.v1alpha.event_pb2 import Event
+from ingestion.v1alpha.event_pb2 import Event
 
 
 class BufferStorage:
