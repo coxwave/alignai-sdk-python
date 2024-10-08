@@ -10,9 +10,11 @@ packages = [{include = "alignai"}]
 [tool.poetry.dependencies]
 python = ">=3.8.0,<4.0"
 requests = "^2.31.0"
-protobuf = "^5.28.1"
-googleapis-googleapis-protocolbuffers-python = "^28.1.0.1.20240827201746+e7f8d366f526"
-googleapis-googleapis-protocolbuffers-pyi = "^28.1.0.1.20240827201746+e7f8d366f526"
+protobuf = "^5.28.2"
+googleapis-googleapis-protocolbuffers-python = "^28.2.0.1.20240827201746+e7f8d366f526"
+googleapis-googleapis-protocolbuffers-pyi = "^28.2.0.1.20240827201746+e7f8d366f526"
+impaction-ai-ingestion-protocolbuffers-pyi = "28.2.0.1.20240908234409+342910308823"
+impaction-ai-ingestion-protocolbuffers-python = "28.2.0.1.20240908234409+342910308823"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.3.7"

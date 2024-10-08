@@ -1,3 +1,6 @@
+from typing import Dict
+
+
 class ValidationError(ValueError):
     def __init__(self, message: str):
         self.message = message
@@ -20,7 +23,7 @@ def validate_user_id_or_raise(user_id: str):
         raise ValidationError("user_id must be at most 64 characters")
 
 
-def validate_custom_properties_or_raise(custom_properties: dict[str, str]):
+def validate_custom_properties_or_raise(custom_properties: Dict[str, str]):
     if len(custom_properties) > 10:
         raise ValidationError("custom_properties must have at most 10 keys")
     for key, value in custom_properties.items():

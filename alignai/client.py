@@ -5,6 +5,7 @@ import uuid
 from datetime import datetime
 
 import pendulum
+from ingestion.v1alpha.event_pb2 import Event, EventProperties
 
 from alignai.api_client import APIClient
 from alignai.buffer_storage import BufferStorage
@@ -18,7 +19,6 @@ from alignai.constants import (
     SERVER_BASE_URL,
     EventTypes,
 )
-from alignai.ingestion.v1alpha.event_pb2 import Event, EventProperties
 from alignai.logger import get_logger
 from alignai.utils import (
     CustomProperties,
