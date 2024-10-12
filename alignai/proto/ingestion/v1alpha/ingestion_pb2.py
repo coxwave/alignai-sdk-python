@@ -21,6 +21,9 @@ _runtime_version.ValidateProtobufRuntimeVersion(
 
 _sym_db = _symbol_database.Default()
 
+from google.api import field_behavior_pb2 as google_dot_api_dot_field__behavior__pb2
+from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
+from alignai.proto.ingestion.v1alpha import event_pb2 as ingestion_dot_v1alpha_dot_event__pb2
 
 DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n!ingestion/v1alpha/ingestion.proto\x12\x11ingestion.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1dingestion/v1alpha/event.proto\"q\n\x14\x43ollectEventsRequest\x12\"\n\nrequest_id\x18\x01 \x01(\tB\x03\xe0\x41\x02R\trequestId\x12\x35\n\x06\x65vents\x18\x02 \x03(\x0b\x32\x18.ingestion.v1alpha.EventB\x03\xe0\x41\x02R\x06\x65vents2f\n\x10IngestionService\x12R\n\rCollectEvents\x12\'.ingestion.v1alpha.CollectEventsRequest\x1a\x16.google.protobuf.Empty\"\x00\x42\xdb\x01\n\x15\x63om.ingestion.v1alphaB\x0eIngestionProtoP\x01ZMgithub.com/coxwave/impaction-ai-api/gen/go/ingestion/v1alpha;ingestionv1alpha\xa2\x02\x03IXX\xaa\x02\x11Ingestion.V1alpha\xca\x02\x11Ingestion\\V1alpha\xe2\x02\x1dIngestion\\V1alpha\\GPBMetadata\xea\x02\x12Ingestion::V1alphab\x06proto3')
 
