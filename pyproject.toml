@@ -10,11 +10,8 @@ packages = [{include = "alignai"}]
 [tool.poetry.dependencies]
 python = ">=3.8.0,<4.0"
 requests = "^2.31.0"
-protobuf = "^5.28.2"
-googleapis-googleapis-protocolbuffers-python = "^28.2.0.1.20240827201746+e7f8d366f526"
-googleapis-googleapis-protocolbuffers-pyi = "^28.2.0.1.20240827201746+e7f8d366f526"
-impaction-ai-ingestion-protocolbuffers-pyi = "28.2.0.1.20240908234409+342910308823"
-impaction-ai-ingestion-protocolbuffers-python = "28.2.0.1.20240908234409+342910308823"
+protobuf = "^5.28.1"
+googleapis-common-protos = "^1.65.0"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.3.7"
@@ -23,12 +20,7 @@ mypy = "^1.11.2"
 isort = "^5.13.2"
 pre-commit = "^3.5.0"
 packaging = "^23.2"
-
-
-[[tool.poetry.source]]
-name = "buf"
-url = "https://buf.build/gen/python"
-priority = "supplemental"
+googleapis-common-protos-stubs = "^2.3.1"
 
 [build-system]
 requires = ["poetry-core"]
@@ -49,7 +41,7 @@ line-length = 120
 target-version = ["py38"]
 exclude = '''
 /(
-  alignai\/ingestion
+  alignai\/proto
   | \.venv
   | venv
 )/

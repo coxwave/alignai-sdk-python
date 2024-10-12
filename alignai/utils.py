@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import Mapping, Dict
 
 from google.protobuf.timestamp_pb2 import Timestamp
-from ingestion.v1alpha.event_pb2 import EventProperties
+from alignai.proto.ingestion.v1alpha.event_pb2 import EventProperties
 
 
 def datetime_to_timestamp(dt: datetime) -> Timestamp:
