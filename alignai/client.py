@@ -4,8 +4,7 @@ import os
 import uuid
 from datetime import datetime, timezone
 
-from ingestion.v1alpha.event_pb2 import Event, EventProperties
-
+from alignai.proto.ingestion.v1alpha.event_pb2 import Event, EventProperties
 from alignai.api_client import APIClient
 from alignai.buffer_storage import BufferStorage
 from alignai.config import Config
