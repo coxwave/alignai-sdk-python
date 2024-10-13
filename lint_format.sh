@@ -2,4 +2,4 @@
 
 black .
 isort .
-ruff .
+ruff check .
