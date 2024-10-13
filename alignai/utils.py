@@ -1,9 +1,8 @@
 from datetime import datetime
-from typing import Mapping
+from typing import Mapping, Dict
 
 from google.protobuf.timestamp_pb2 import Timestamp
-
-from alignai.ingestion.v1alpha.event_pb2 import EventProperties
+from alignai.proto.ingestion.v1alpha.event_pb2 import EventProperties
 
 
 def datetime_to_timestamp(dt: datetime) -> Timestamp:
@@ -12,7 +11,7 @@ def datetime_to_timestamp(dt: datetime) -> Timestamp:
     return timestamp
 
 
-CustomProperties = dict[str, str]
+CustomProperties = Dict[str, str]
 
 
 def serialize_custom_properties(

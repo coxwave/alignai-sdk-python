@@ -6,25 +6,23 @@
 """Generated protocol buffer code."""
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import descriptor_pool as _descriptor_pool
-# from google.protobuf import runtime_version as _runtime_version
+from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
-# _runtime_version.ValidateProtobufRuntimeVersion(
-#     _runtime_version.Domain.PUBLIC,
-#     5,
-#     28,
-#     1,
-#     '',
-#     'ingestion/v1alpha/event.proto'
-# )
+_runtime_version.ValidateProtobufRuntimeVersion(
+    _runtime_version.Domain.PUBLIC,
+    5,
+    28,
+    1,
+    '',
+    'ingestion/v1alpha/event.proto'
+)
 # @@protoc_insertion_point(imports)
 
 _sym_db = _symbol_database.Default()
 
-
 from google.api import field_behavior_pb2 as google_dot_api_dot_field__behavior__pb2
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
-
 
 DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1dingestion/v1alpha/event.proto\x12\x11ingestion.v1alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe4\x01\n\x05\x45vent\x12\x13\n\x02id\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x02id\x12\x17\n\x04type\x18\x02 \x01(\tB\x03\xe0\x41\x02R\x04type\x12@\n\x0b\x63reate_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x01R\ncreateTime\x12G\n\nproperties\x18\x04 \x01(\x0b\x32\".ingestion.v1alpha.EventPropertiesB\x03\xe0\x41\x02R\nproperties\x12\"\n\nproject_id\x18\x05 \x01(\tB\x03\xe0\x41\x02R\tprojectId\"\x9e\x11\n\x0f\x45ventProperties\x12\x65\n\x12session_properties\x18\x01 \x01(\x0b\x32\x34.ingestion.v1alpha.EventProperties.SessionPropertiesH\x00R\x11sessionProperties\x12\x65\n\x12message_properties\x18\x02 \x01(\x0b\x32\x34.ingestion.v1alpha.EventProperties.MessagePropertiesH\x00R\x11messageProperties\x12\\\n\x0fuser_properties\x18\x03 \x01(\x0b\x32\x31.ingestion.v1alpha.EventProperties.UserPropertiesH\x00R\x0euserProperties\x12h\n\x13\x66\x65\x65\x64\x62\x61\x63k_properties\x18\x04 \x01(\x0b\x32\x35.ingestion.v1alpha.EventProperties.FeedbackPropertiesH\x00R\x12\x66\x65\x65\x64\x62\x61\x63kProperties\x12j\n\x11\x63ustom_properties\x18\n \x03(\x0b\x32\x38.ingestion.v1alpha.EventProperties.CustomPropertiesEntryB\x03\xe0\x41\x01R\x10\x63ustomProperties\x1a\xf6\x01\n\x11SessionProperties\x12\"\n\nsession_id\x18\x01 \x01(\tB\x03\xe0\x41\x02R\tsessionId\x12(\n\rsession_title\x18\x02 \x01(\tB\x03\xe0\x41\x01R\x0csessionTitle\x12M\n\x12session_start_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x01R\x10sessionStartTime\x12\x1c\n\x07user_id\x18\x04 \x01(\tB\x03\xe0\x41\x02R\x06userId\x12&\n\x0c\x61ssistant_id\x18\x05 \x01(\tB\x03\xe0\x41\x01R\x0b\x61ssistantId\x1a\xbc\x03\n\x11MessageProperties\x12\"\n\nsession_id\x18\x01 \x01(\tB\x03\xe0\x41\x02R\tsessionId\x12-\n\x0fmessage_id_hint\x18\x02 \x01(\tB\x05\x18\x01\xe0\x41\x01R\rmessageIdHint\x12\x31\n\x12message_index_hint\x18\x03 \x01(\x05\x42\x03\xe0\x41\x02R\x10messageIndexHint\x12\x61\n\x0cmessage_role\x18\x04 \x01(\x0e\x32\x39.ingestion.v1alpha.EventProperties.MessageProperties.RoleB\x03\xe0\x41\x02R\x0bmessageRole\x12,\n\x0fmessage_content\x18\x05 \x01(\tB\x03\xe0\x41\x02R\x0emessageContent\x12O\n\x13message_create_time\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x01R\x11messageCreateTime\"?\n\x04Role\x12\x14\n\x10ROLE_UNSPECIFIED\x10\x00\x12\r\n\tROLE_USER\x10\x01\x12\x12\n\x0eROLE_ASSISTANT\x10\x02\x1a\xba\x03\n\x0eUserProperties\x12\x1c\n\x07user_id\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x06userId\x12\"\n\nuser_email\x18\x02 \x01(\tB\x03\xe0\x41\x01R\tuserEmail\x12\x1c\n\x07user_ip\x18\x03 \x01(\tB\x03\xe0\x41\x01R\x06userIp\x12\x64\n\ruser_location\x18\x04 \x01(\x0b\x32:.ingestion.v1alpha.EventProperties.UserProperties.LocationB\x03\xe0\x41\x01R\x0cuserLocation\x12I\n\x10user_create_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x01R\x0euserCreateTime\x12/\n\x11user_display_name\x18\x06 \x01(\tB\x03\xe0\x41\x01R\x0fuserDisplayName\x1a\x66\n\x08Location\x12&\n\x0c\x63ountry_code\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x0b\x63ountryCode\x12\x19\n\x05state\x18\x02 \x01(\tB\x03\xe0\x41\x01R\x05state\x12\x17\n\x04\x63ity\x18\x03 \x01(\tB\x03\xe0\x41\x01R\x04\x63ity\x1a\xba\x02\n\x12\x46\x65\x65\x64\x62\x61\x63kProperties\x12\"\n\nsession_id\x18\x01 \x01(\tB\x03\xe0\x41\x02R\tsessionId\x12\x31\n\x12message_index_hint\x18\x02 \x01(\x05\x42\x03\xe0\x41\x01R\x10messageIndexHint\x12j\n\x0f\x66\x65\x65\x64\x62\x61\x63k_target\x18\x03 \x01(\x0e\x32<.ingestion.v1alpha.EventProperties.FeedbackProperties.TargetB\x03\xe0\x41\x02R\x0e\x66\x65\x65\x64\x62\x61\x63kTarget\x12\x17\n\x04type\x18\x04 \x01(\tB\x03\xe0\x41\x02R\x04type\"H\n\x06Target\x12\x16\n\x12TARGET_UNSPECIFIED\x10\x00\x12\x12\n\x0eTARGET_SESSION\x10\x01\x12\x12\n\x0eTARGET_MESSAGE\x10\x02\x1a=\n\x13\x43ustomPropertyValue\x12&\n\x0cstring_value\x18\x01 \x01(\tB\x03\xe0\x41\x02R\x0bstringValue\x1a{\n\x15\x43ustomPropertiesEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12L\n\x05value\x18\x02 \x01(\x0b\x32\x36.ingestion.v1alpha.EventProperties.CustomPropertyValueR\x05value:\x02\x38\x01\x42\x15\n\x13reserved_propertiesJ\x04\x08\x05\x10\nB\xd7\x01\n\x15\x63om.ingestion.v1alphaB\nEventProtoP\x01ZMgithub.com/coxwave/impaction-ai-api/gen/go/ingestion/v1alpha;ingestionv1alpha\xa2\x02\x03IXX\xaa\x02\x11Ingestion.V1alpha\xca\x02\x11Ingestion\\V1alpha\xe2\x02\x1dIngestion\\V1alpha\\GPBMetadata\xea\x02\x12Ingestion::V1alphab\x06proto3')
 

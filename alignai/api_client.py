@@ -8,8 +8,8 @@ import requests
 from requests.exceptions import RequestException
 
 from alignai.exception import APIError
-from alignai.ingestion.v1alpha.event_pb2 import Event
-from alignai.ingestion.v1alpha.ingestion_pb2 import CollectEventsRequest
+from alignai.proto.ingestion.v1alpha.event_pb2 import Event
+from alignai.proto.ingestion.v1alpha.ingestion_pb2 import CollectEventsRequest
 
 
 class APIClient:

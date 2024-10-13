@@ -2,10 +2,9 @@ from __future__ import annotations
 
 import os
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 
-import pendulum
-
+from alignai.proto.ingestion.v1alpha.event_pb2 import Event, EventProperties
 from alignai.api_client import APIClient
 from alignai.buffer_storage import BufferStorage
 from alignai.config import Config
@@ -18,7 +17,6 @@ from alignai.constants import (
     SERVER_BASE_URL,
     EventTypes,
 )
-from alignai.ingestion.v1alpha.event_pb2 import Event, EventProperties
 from alignai.logger import get_logger
 from alignai.utils import (
     CustomProperties,
@@ -100,7 +98,7 @@ class AlignAI:
         open_session_event = Event(
             id=uuid.uuid4().hex,
             type=EventTypes.SESSION_OPEN,
-            create_time=datetime_to_timestamp(pendulum.now()),
+            create_time=datetime_to_timestamp(datetime.now(timezone.utc)),
             properties=EventProperties(
                 session_properties=EventProperties.SessionProperties(**session_properties_args),
                 custom_properties=serialize_custom_properties(custom_properties) if custom_properties else None,
@@ -120,7 +118,7 @@ class AlignAI:
         close_session_event = Event(
             id=uuid.uuid4().hex,
             type=EventTypes.SESSION_CLOSE,
-            create_time=datetime_to_timestamp(pendulum.now()),
+            create_time=datetime_to_timestamp(datetime.now(timezone.utc)),
             properties=EventProperties(session_properties=EventProperties.SessionProperties(session_id=session_id)),
             project_id=self.project_id,
         )
@@ -172,7 +170,7 @@ class AlignAI:
         identify_user_event = Event(
             id=uuid.uuid4().hex,
             type=EventTypes.USER_RECOGNIZE,
-            create_time=datetime_to_timestamp(pendulum.now()),
+            create_time=datetime_to_timestamp(datetime.now(timezone.utc)),
             properties=EventProperties(
                 user_properties=EventProperties.UserProperties(**user_properties_args),
                 custom_properties=serialize_custom_properties(custom_properties) if custom_properties else None,
@@ -211,7 +209,7 @@ class AlignAI:
         create_message_event = Event(
             id=uuid.uuid4().hex,
             type=EventTypes.MESSAGE_CREATE,
-            create_time=datetime_to_timestamp(pendulum.now()),
+            create_time=datetime_to_timestamp(datetime.now(timezone.utc)),
             properties=EventProperties(
                 message_properties=EventProperties.MessageProperties(
                     session_id=session_id,
@@ -249,7 +247,7 @@ class AlignAI:
         create_feedback_event = Event(
             id=uuid.uuid4().hex,
             type=EventTypes.MESSAGE_CREATE,
-            create_time=datetime_to_timestamp(pendulum.now()),
+            create_time=datetime_to_timestamp(datetime.now(timezone.utc)),
             properties=EventProperties(
                 feedback_properties=EventProperties.FeedbackProperties(
                     session_id=session_id,
@@ -285,7 +283,7 @@ class AlignAI:
         create_feedback_event = Event(
             id=uuid.uuid4().hex,
             type=EventTypes.MESSAGE_CREATE,
-            create_time=datetime_to_timestamp(pendulum.now()),
+            create_time=datetime_to_timestamp(datetime.now(timezone.utc)),
             properties=EventProperties(
                 feedback_properties=EventProperties.FeedbackProperties(
                     session_id=session_id,
