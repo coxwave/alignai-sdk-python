@@ -8,7 +8,7 @@ packages = [{include = "alignai"}]
 
 
 [tool.poetry.dependencies]
-python = ">=3.8.0,<4.0"
+python = ">=3.9.0,<4.0"
 requests = "^2.31.0"
 protobuf = "^5.28.1"
 googleapis-common-protos = "^1.65.0"
@@ -33,12 +33,12 @@ lint.select = [
   "F",   # pyflakes
   "UP",  # pyupgrade
 ]
-exclude = ["alignai/ingestion"]
-target-version = "py38"
+exclude = ["alignai/proto"]
+target-version = "py39"
 
 [tool.black]
 line-length = 120
-target-version = ["py38"]
+target-version = ["py39"]
 exclude = '''
 /(
   alignai\/proto
@@ -49,5 +49,5 @@ exclude = '''
 
 [tool.isort]
 profile = "black"
-py_version=38
-skip_glob = ["alignai/ingestion", "venv", ".venv"]
+py_version=39
+skip_glob = ["alignai/proto", "venv", ".venv"]
