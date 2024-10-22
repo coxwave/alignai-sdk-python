@@ -3,6 +3,7 @@ class EventTypes:
     SESSION_CLOSE = "session_close"
     USER_RECOGNIZE = "user_recognize"
     MESSAGE_CREATE = "message_create"
+    FEEDBACK_CREATE = "feedback_create"
 
 
 ROLE_USER = "user"

@@ -246,7 +246,7 @@ class AlignAI:
 
         create_feedback_event = Event(
             id=uuid.uuid4().hex,
-            type=EventTypes.MESSAGE_CREATE,
+            type=EventTypes.FEEDBACK_CREATE,
             create_time=datetime_to_timestamp(datetime.now(timezone.utc)),
             properties=EventProperties(
                 feedback_properties=EventProperties.FeedbackProperties(
@@ -282,7 +282,7 @@ class AlignAI:
 
         create_feedback_event = Event(
             id=uuid.uuid4().hex,
-            type=EventTypes.MESSAGE_CREATE,
+            type=EventTypes.FEEDBACK_CREATE,
             create_time=datetime_to_timestamp(datetime.now(timezone.utc)),
             properties=EventProperties(
                 feedback_properties=EventProperties.FeedbackProperties(
